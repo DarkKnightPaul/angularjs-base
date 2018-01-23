@@ -1,0 +1,4 @@
+/nginx/logs
+/nginx/temp
+/dist
+/build/node_modules

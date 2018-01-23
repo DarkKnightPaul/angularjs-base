@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>{{$root.title}}</title>
+    <link rel="stylesheet" href="css/lib.min.css">
+    <link rel="stylesheet" href="css/app.min.css">
+  </head>
+  <body>
+    <div>
+      <alert-dialog></alert-dialog>
+      <wait-dialog></wait-dialog>
+      <custom-dialog></custom-dialog>
+      <confirm-dialog></confirm-dialog>
+    </div>
+    <div ng-controller="RootCtrl">
+      <div ng-view></div>
+    </div>
+    <script type="text/javascript" src="js/lib.min.js"></script>
+    <script type="text/javascript" src="js/app.min.js"></script>
+  </body>
+</html>
