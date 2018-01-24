@@ -1,8 +1,8 @@
 (function() {
     var ctrls = angular.module("controllers");
-    ctrls.controller("IndexCtrl", ["$scope", "$log", "$timeout", "DialogService", IndexCtrl]);
+    ctrls.controller("IndexCtrl", ["$scope", "$log", "$timeout", "DialogService", "DataService", IndexCtrl]);
 
-    function IndexCtrl($scope, $log, $timeout, DialogService) {
+    function IndexCtrl($scope, $log, $timeout, DialogService, DataService) {
         $log.debug("IndexCtrl init...");
 
         // 处理scope销毁
@@ -10,13 +10,19 @@
             $log.debug("IndexCtrl destroy...");
         });
 
-        DialogService.showConfirmDialog("是否显示确定对话框", function() {
-            DialogService.showAlertDialog("确定对话框");
-        }, function() {
+        DialogService.showConfirmDialog("是否测试获取服务器数据，需要开启后台项目", function() {
             DialogService.showWaitDialog("等待处理完毕...");
-            $timeout(function() {
+            DataService.setServer("http://127.0.0.1:10000");
+            DataService.send("/demo/echo", {
+                test: {
+                    tid: 100
+                }
+            }, function(err, data) {
                 DialogService.hideWaitDialog();
-            }, 2000);
+                $log.debug(err, data);
+            });
+        }, function() {
+            DialogService.showAlertDialog("没有获取后台数据");
         });
     }
 })();
