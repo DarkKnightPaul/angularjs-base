@@ -21,6 +21,15 @@
                 DialogService.hideWaitDialog();
                 $log.debug(err, data);
             });
+            DataService.send("/html/index", {
+                test: {
+                    tid: 100,
+                    tinfo: "哈哈哈"
+                }
+            }, function(err, data) {
+                DialogService.hideWaitDialog();
+                $log.debug(err, data);
+            });
         }, function() {
             DialogService.showAlertDialog("没有获取后台数据");
         });
